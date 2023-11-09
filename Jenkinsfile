@@ -37,7 +37,7 @@ pipeline {
         stage ('API Test') {
             steps {
                 dir('api-test') {
-                    git credentialsId: 'github_login', url: 'https://github.com/wcaquino/tasks-api-test'
+                    git credentialsId: 'github_login', url: 'https://github.com/clodoaldo-zeferini-enterprise/cicd-tasks-api-test'
                     bat 'mvn test'
                 }
             }
@@ -45,7 +45,7 @@ pipeline {
         stage ('Deploy Frontend') {
             steps {
                 dir('frontend') {
-                    git credentialsId: 'github_login', url: 'https://github.com/wcaquino/tasks-frontend'
+                    git credentialsId: 'github_login', url: 'https://github.com/clodoaldo-zeferini-enterprise/cicd-tasks-frontend'
                     bat 'mvn clean package'
                     deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
                 }
@@ -54,15 +54,9 @@ pipeline {
         stage ('Functional Test') {
             steps {
                 dir('functional-test') {
-                    git credentialsId: 'github_login', url: 'https://github.com/wcaquino/tasks-functional-tests'
+                    git credentialsId: 'github_login', url: 'https://github.com/clodoaldo-zeferini-enterprise/cicd-tasks-functional-tests'
                     bat 'mvn test'
                 }
-            }
-        }
-        stage('Deploy Prod') {
-            steps {
-                bat 'docker-compose build'
-                bat 'docker-compose up -d'
             }
         }
         stage ('Health Check') {
@@ -80,10 +74,10 @@ pipeline {
             archiveArtifacts artifacts: 'target/tasks-backend.war, frontend/target/tasks.war', onlyIfSuccessful: true
         }
         unsuccessful {
-            emailext attachLog: true, body: 'See the attached log below', subject: 'Build $BUILD_NUMBER has failed', to: 'wcaquino+jenkins@gmail.com'
+            emailext attachLog: true, body: 'See the attached log below', subject: 'Build $BUILD_NUMBER has failed', to: 'clodoaldo.zeferini+jenkins@gmail.com'
         }
         fixed {
-            emailext attachLog: true, body: 'See the attached log below', subject: 'Build is fine!!!', to: 'wcaquino+jenkins@gmail.com'
+            emailext attachLog: true, body: 'See the attached log below', subject: 'Build is fine!!!', to: 'clodoaldo.zeferini+jenkins@gmail.com'
         }
     }
 }

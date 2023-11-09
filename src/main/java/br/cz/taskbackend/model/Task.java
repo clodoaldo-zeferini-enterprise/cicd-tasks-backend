@@ -1,4 +1,4 @@
-package br.ce.wcaquino.taskbackend.model;
+package br.cz.taskbackend.model;
 
 
 import jakarta.persistence.Column;
