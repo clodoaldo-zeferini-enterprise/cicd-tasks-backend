@@ -1,7 +1,8 @@
-package br.ce.wcaquino.taskbackend.controller;
+package br.cz.taskbackend.controller;
 
 import java.time.LocalDate;
 
+import br.cz.taskbackend.controller.task.TaskController;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,9 +11,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import br.ce.wcaquino.taskbackend.model.Task;
-import br.ce.wcaquino.taskbackend.repo.TaskRepo;
-import br.ce.wcaquino.taskbackend.utils.ValidationException;
+import br.cz.taskbackend.model.Task;
+import br.cz.taskbackend.repo.TaskRepo;
+import br.cz.taskbackend.utils.ValidationException;
 
 public class TaskControllerTest {
 	

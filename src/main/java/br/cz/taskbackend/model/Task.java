@@ -1,11 +1,12 @@
-package br.ce.wcaquino.taskbackend.model;
+package br.cz.taskbackend.model;
+
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
 public class Task {
@@ -19,6 +20,8 @@ public class Task {
 	private LocalDate dueDate;
 	
 	public Task() {}
+
+
 
 	@Id
 	@GeneratedValue
